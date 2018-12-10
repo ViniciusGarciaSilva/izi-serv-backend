@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "45e7fa82-ecdc-4013-90d2-3160ede00826",
+		"name": "lista de compras",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "itens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000/itens",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"item\":\"tomates\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/item",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"item\":\"peras\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/item",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "itens",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000/item/abacate",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item",
+						"abacate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
