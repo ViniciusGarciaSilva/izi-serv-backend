@@ -5,6 +5,7 @@ class ProjetoModel(Base):
     __tablename__ = 'projetos'
     id = db.Column(db.Integer, primary_key=True)
     cliente = db.Column(db.String(200))
+    theme = db.Column(db.String(200))
     integrador = db.Column(db.String(200))
     prestadores = db.Column(db.String(200))
     funcReq = db.Column(db.String(200))
@@ -13,7 +14,7 @@ class ProjetoModel(Base):
     nome = db.Column(db.String(200), unique=True)
     detalhes = db.Column(db.String(200), unique=True)
     
-    def __init__(self, nome, detalhes, cliente, integrador, prestadores, sprints, funcReq, notFuncReq):
+    def __init__(self, nome, detalhes, cliente, integrador, prestadores, sprints, funcReq, notFuncReq, theme):
         self.nome = nome
         self.detalhes = detalhes
         self.cliente = cliente
@@ -22,6 +23,7 @@ class ProjetoModel(Base):
         self.sprints=sprints
         self.funcReq=funcReq
         self.notFuncReq=notFuncReq
+        self.theme = theme
 
     def adicionar(self):
         db.session.add(self)

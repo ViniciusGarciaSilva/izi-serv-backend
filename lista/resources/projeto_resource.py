@@ -45,6 +45,11 @@ class ProjetoResource(Resource):
                         required=True,
                         help="O projeto deve possuir detalhes."
                         )
+    parser.add_argument('theme',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
     def post(self):
         json = ''
         try:
@@ -58,12 +63,13 @@ class ProjetoResource(Resource):
             sprints = data['sprints']
             funcReq = data['funcReq']
             notFuncReq = data['notFuncReq']
+            theme = data['theme']
 
             projeto = ProjetoModel.encontrar_pelo_nome(nome)
             if projeto : 
                 return {"message":"Projeto {} já está na lista".format(nome)}
             else:
-                projeto = ProjetoModel(nome=nome, detalhes=detalhes, cliente=cliente, integrador=integrador, prestadores=prestadores, sprints=sprints, funcReq=funcReq, notFuncReq=notFuncReq)
+                projeto = ProjetoModel(nome=nome, detalhes=detalhes, cliente=cliente, integrador=integrador, prestadores=prestadores, sprints=sprints, funcReq=funcReq, notFuncReq=notFuncReq, theme=theme)
                 projeto.adicionar()
                 projeto = ProjetoModel.encontrar_pelo_nome(nome)
                 schema = ProjetoSchema()
