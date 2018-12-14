@@ -26,6 +26,8 @@ CORS(app,resources={r"/*": {"origins": "*"}}) #O uso do cors
 #cria as tabelas do banco de dados, caso elas não estejam criadas
 @app.before_first_request
 def create_tables():
+    from dao import db
+    db.init_app(app)
     print("criar tabelas")
     db.create_all()
 #fim criaçaõ de tabelas
