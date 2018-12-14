@@ -9,6 +9,7 @@ from lista.resources.projeto_resource import ProjetosResource, ProjetoResource
 from lista.resources.cliente_resource import ClientesResource, ClienteResource
 from lista.resources.integrador_resource import IntegradoresResource, IntegradorResource
 from lista.resources.prestador_resource import PrestadoresResource, PrestadorResource
+from lista.resources.service_resource import ServicesResource, ServiceResource
 
 app = Flask(__name__)
 #Configurações relativas ao sqlalchemy
@@ -39,6 +40,8 @@ api.add_resource(IntegradorResource, '/integrador', '/integrador/<string:nome>')
 api.add_resource(IntegradoresResource, '/integradores')
 api.add_resource(PrestadorResource, '/prestador', '/prestador/<string:nome>')
 api.add_resource(PrestadoresResource, '/prestadores')
+api.add_resource(ServicesResource, '/services')
+api.add_resource(ServiceResource, '/service')
 
 api.add_resource(ListasResource, '/listas')
 api.add_resource(ListaResource, '/lista','/lista/<string:lista>')
