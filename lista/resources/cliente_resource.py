@@ -19,7 +19,7 @@ class ClienteResource(Resource):
     def get(self,nome):
         json = ''
         try:
-            nome = ClienteModel.encontrar_pelo_id(nome)
+            nome = ClienteModel.encontrar_pelo_nome(nome)
             if nome:
                 schema = ClienteSchema()
                 json = schema.dump(nome).data

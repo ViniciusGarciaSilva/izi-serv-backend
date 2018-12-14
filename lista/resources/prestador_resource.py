@@ -19,7 +19,7 @@ class PrestadorResource(Resource):
     def get(self,nome):
         json = ''
         try:
-            nome = PrestadorModel.encontrar_pelo_id(nome)
+            nome = PrestadorModel.encontrar_pelo_nome(nome)
             if nome:
                 schema = PrestadorSchema()
                 json = schema.dump(nome).data

@@ -19,7 +19,7 @@ class IntegradorResource(Resource):
     def get(self,nome):
         json = ''
         try:
-            nome = IntegradorModel.encontrar_pelo_id(nome)
+            nome = IntegradorModel.encontrar_pelo_nome(nome)
             if nome:
                 schema = IntegradorSchema()
                 json = schema.dump(nome).data
