@@ -10,6 +10,11 @@ class PrestadorResource(Resource):
                         required=True,
                         help="O nome do Prestador não pode estar em branco."
                         )
+    parser.add_argument('email',
+                        type=str,
+                        required=True,
+                        help="O email do Prestador não pode estar em branco."
+                        )
 
     def get(self,nome):
         json = ''
@@ -33,11 +38,12 @@ class PrestadorResource(Resource):
             data = PrestadorResource.parser.parse_args()
             print(data)
             nome = data['nome']
+            email = data['email']
             prestador = PrestadorModel.encontrar_pelo_nome(nome)
             if prestador :
                 return {"message":"Prestador {} já está na lista".format(nome)}
             else:
-                prestador = PrestadorModel(nome=nome)
+                prestador = PrestadorModel(nome=nome, email=email)
                 prestador.adicionar()
                 prestador = PrestadorModel.encontrar_pelo_nome(nome)
                 schema = PrestadorSchema()
@@ -66,13 +72,14 @@ class PrestadorResource(Resource):
         json = ''
         try:
             data = PrestadorResource.parser.parse_args()
-            nome = data['prestador']
+            nome = data['nome']
+            email = data['email']
 
             prestador = PrestadorModel.encontrar_pelo_nome(nome)
             if prestador :
                 return {"message":"Prestador {} já está na lista".format(prestador)},200
             else:
-                prestador = PrestadorModel(nome=nome)
+                prestador = PrestadorModel(nome=nome, email=email)
                 prestador.adicionar()
                 schema = PrestadorSchema(many=True)
                 prestador = PrestadorModel.encontrar_pelo_nome(nome)

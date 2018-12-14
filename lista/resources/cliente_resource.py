@@ -10,6 +10,11 @@ class ClienteResource(Resource):
                         required=True,
                         help="O nome do Cliente não pode estar em branco."
                         )
+    parser.add_argument('email',
+                        type=str,
+                        required=True,
+                        help="O email do Cliente não pode estar em branco."
+                        )
 
     def get(self,nome):
         json = ''
@@ -33,11 +38,12 @@ class ClienteResource(Resource):
             data = ClienteResource.parser.parse_args()
             print(data)
             nome = data['nome']
+            email = data['email']
             cliente = ClienteModel.encontrar_pelo_nome(nome)
             if cliente :
                 return {"message":"Cliente {} já está na lista".format(nome)}
             else:
-                cliente = ClienteModel(nome=nome)
+                cliente = ClienteModel(nome=nome, email=email)
                 cliente.adicionar()
                 cliente = ClienteModel.encontrar_pelo_nome(nome)
                 schema = ClienteSchema()
@@ -72,7 +78,7 @@ class ClienteResource(Resource):
             if cliente :
                 return {"message":"Cliente {} já está na lista".format(cliente)},200
             else:
-                cliente = ClienteModel(nome=nome)
+                cliente = ClienteModel(nome=nome, email=email)
                 cliente.adicionar()
                 schema = ClienteSchema(many=True)
                 cliente = ClienteModel.encontrar_pelo_nome(nome)

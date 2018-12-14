@@ -5,9 +5,11 @@ class PrestadorModel(Base):
     __tablename__ = 'prestadores'
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(200), unique=True)
+    email = db.Column(db.String(200), unique=True)
     
-    def __init__(self, nome):
+    def __init__(self, nome, email):
         self.nome = nome
+        self.email = email
 
 
     def adicionar(self):

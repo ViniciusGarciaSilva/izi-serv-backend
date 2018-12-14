@@ -10,6 +10,11 @@ class IntegradorResource(Resource):
                         required=True,
                         help="O nome do Integrador não pode estar em branco."
                         )
+    parser.add_argument('email',
+                        type=str,
+                        required=True,
+                        help="O email do Integrador não pode estar em branco."
+                        )
 
     def get(self,nome):
         json = ''
@@ -33,11 +38,12 @@ class IntegradorResource(Resource):
             data = IntegradorResource.parser.parse_args()
             print(data)
             nome = data['nome']
+            email = data['email']
             integrador = IntegradorModel.encontrar_pelo_nome(nome)
             if integrador :
                 return {"message":"Integrador {} já está na lista".format(nome)}
             else:
-                integrador = IntegradorModel(nome=nome)
+                integrador = IntegradorModel(nome=nome, email=email)
                 integrador.adicionar()
                 integrador = IntegradorModel.encontrar_pelo_nome(nome)
                 schema = IntegradorSchema()
@@ -66,13 +72,14 @@ class IntegradorResource(Resource):
         json = ''
         try:
             data = IntegradorResource.parser.parse_args()
-            nome = data['integrador']
+            nome = data['nome']
+            email = data['email']
 
             integrador = IntegradorModel.encontrar_pelo_nome(nome)
             if integrador :
                 return {"message":"Integrador {} já está na lista".format(integrador)},200
             else:
-                integrador = IntegradorModel(nome=nome)
+                integrador = IntegradorModel(nome=nome, email=email)
                 integrador.adicionar()
                 schema = IntegradorSchema(many=True)
                 integrador = IntegradorModel.encontrar_pelo_nome(nome)

@@ -5,8 +5,6 @@ from datetime import datetime
 class UsuarioModel(Base):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(200),unique=True)
-    email = db.Column(db.String(200),unique=True)
     dataCadastro = db.Column(db.DateTime)
     listas = db.relationship("ListaModel",back_populates="usuario")
 
