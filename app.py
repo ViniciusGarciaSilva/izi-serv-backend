@@ -51,4 +51,4 @@ api.add_resource(UsuariosResource, '/usuarios')
 if __name__ == '__main__':
     from dao import db
     db.init_app(app)
-    app.run(port=5000,debug=True)
+    app.run(host="0.0.0.0", port=80)
