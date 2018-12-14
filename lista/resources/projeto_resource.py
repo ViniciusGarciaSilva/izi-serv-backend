@@ -15,7 +15,36 @@ class ProjetoResource(Resource):
                         required=True,
                         help="O projeto deve possuir detalhes."
                         )
-
+    parser.add_argument('cliente',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
+    parser.add_argument('integrador',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
+    parser.add_argument('prestadores',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
+    parser.add_argument('sprints',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
+    parser.add_argument('funcReq',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
+    parser.add_argument('notFuncReq',
+                        type=str,
+                        required=True,
+                        help="O projeto deve possuir detalhes."
+                        )
     def post(self):
         json = ''
         try:
@@ -23,11 +52,18 @@ class ProjetoResource(Resource):
             print(data)
             nome = data['nome']
             detalhes = data['detalhes']
+            cliente = data['cliente']
+            integrador = data['integrador']
+            prestadores = data['prestadores']
+            sprints = data['sprints']
+            funcReq = data['funcReq']
+            notFuncReq = data['notFuncReq']
+
             projeto = ProjetoModel.encontrar_pelo_nome(nome)
-            if projeto :
+            if projeto : 
                 return {"message":"Projeto {} já está na lista".format(nome)}
             else:
-                projeto = ProjetoModel(nome=nome, detalhes=detalhes)
+                projeto = ProjetoModel(nome=nome, detalhes=detalhes, cliente=cliente, integrador=integrador, prestadores=prestadores, sprints=sprints, funcReq=funcReq, notFuncReq=notFuncReq)
                 projeto.adicionar()
                 projeto = ProjetoModel.encontrar_pelo_nome(nome)
                 schema = ProjetoSchema()

@@ -4,12 +4,24 @@ from datetime import datetime
 class ProjetoModel(Base):
     __tablename__ = 'projetos'
     id = db.Column(db.Integer, primary_key=True)
+    cliente = db.Column(db.String(200))
+    integrador = db.Column(db.String(200))
+    prestadores = db.Column(db.String(200))
+    funcReq = db.Column(db.String(200))
+    notFuncReq = db.Column(db.String(200))
+    sprints = db.Column(db.String(200))
     nome = db.Column(db.String(200), unique=True)
     detalhes = db.Column(db.String(200), unique=True)
     
-    def __init__(self, nome, detalhes):
+    def __init__(self, nome, detalhes, cliente, integrador, prestadores, sprints, funcReq, notFuncReq):
         self.nome = nome
         self.detalhes = detalhes
+        self.cliente = cliente
+        self.integrador = integrador
+        self.prestadores = prestadores
+        self.sprints=sprints
+        self.funcReq=funcReq
+        self.notFuncReq=notFuncReq
 
     def adicionar(self):
         db.session.add(self)
